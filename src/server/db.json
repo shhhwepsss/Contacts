@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "name": "Igor",
+      "password": "Aleshka",
+      "contacts": [],
+      "id": 1
+    },
+    {
+      "name": "asdf",
+      "password": "asdfasdf",
+      "contacts": [
+        {
+          "id": 1650072837361,
+          "name": "Любовь",
+          "phoneNumber": "797979797"
+        },
+        {
+          "id": 1650073494521,
+          "name": "Витя",
+          "phoneNumber": "890017366464"
+        },
+        {
+          "id": 1650133934104,
+          "name": "Dbkm",
+          "phoneNumber": "456456465"
+        },
+        {
+          "id": 1650134028824,
+          "name": "Dbkm",
+          "phoneNumber": "456456465"
+        },
+        {
+          "id": 1650134199879,
+          "name": "asdf",
+          "phoneNumber": "asdf"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "name": "Вильдан",
+      "password": "Wildan2004",
+      "contacts": [],
+      "id": 3
+    },
+    {
+      "name": "Писька моржа",
+      "password": "12345678",
+      "contacts": [
+        {
+          "id": 1650134413050,
+          "name": "Долбаеб",
+          "phoneNumber": "89003231736"
+        },
+        {
+          "id": 1650134421607,
+          "name": "Вильдан",
+          "phoneNumber": "89003231736"
+        }
+      ],
+      "id": 4
+    }
+  ]
+}

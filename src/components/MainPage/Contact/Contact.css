@@ -1,0 +1,76 @@
+.contact{
+    max-width: 1000px  ;
+    max-height: 250px;
+    margin: 10px auto 0;
+    background-color: #A0A1A5;
+    display: flex;
+    position: relative;
+    border: 1px solid black;
+}
+.main-page__contact-title{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    color: black; 
+}
+.contact__info-block{
+    max-width: 215px;
+    display: flex;
+    text-align: left;
+}
+
+.contact__paragraph {
+    max-width: 100px;
+    font-size: large;
+    margin: 20px 0 0 20px;
+}
+.contact__buttons-container{
+    margin: auto 0;
+    width: 100%;
+    text-align: end;
+}
+
+.contact__button{
+    width: 75px;
+    height: 50px;
+    margin: 0 0 0 0;
+}
+
+.contact__modalWindow-active{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 400px;
+    background-color: #56595E;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 100;
+    padding: 40px 0 0 0;
+}
+.contact__modalWindow-static{display: none;}
+.contact__modalWindow-active-paragraph{
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    text-decoration: underline;
+}
+.contact__modalWindow-active-input{
+    height: 30px;
+    margin: 10px 0 0 0 ;
+}
+@media (max-width:500px) {
+    .contact__buttons-container{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+@media (max-width:430px) {
+    .contact__info-block{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
