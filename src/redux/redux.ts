@@ -13,8 +13,8 @@ const initialState: IState  = {
 const reducer = (state = initialState, action: UserAction) => {
     switch (action.type ) {
         case "SET_USER_DATA":
-            return state = {...state, name: action.name, password: action.password, contacts: action.contacts, id:action.id}
-            break;
+            const {name, password, contacts,id} = action
+            return state = {...state, name, password, contacts, id}
         case "DELETE_USER_CONTACT":
             state.contacts.map( (item, index) => {
                 if(action.deleteElement === item.phoneNumber){    
@@ -22,13 +22,11 @@ const reducer = (state = initialState, action: UserAction) => {
                 }
             })
             return state = {...state}
-            break;
         case "ADD_USER_CONTACT":
                 state.contacts.push(action.newContact)
                 return state = {...state}
-            break;    
         case "CHANGE_USER_CONTACT":
-                state.contacts.map((item,index)=> {
+                state.contacts.map((item)=> {
                     if(item.phoneNumber === action.changedContact.oldPhoneNumber){
                         item.phoneNumber= action.changedContact.phoneNumber;
                         item.name = action.changedContact.name
@@ -36,10 +34,8 @@ const reducer = (state = initialState, action: UserAction) => {
                     return item
             })
             return {...state}
-            break;   
         default:
             return state;
-            break;
     }
 }
 

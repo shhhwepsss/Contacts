@@ -1,11 +1,12 @@
 .contact{
     max-width: 1000px  ;
-    max-height: 250px;
+    width: 80%;
     margin: 10px auto 0;
     background-color: #A0A1A5;
     display: flex;
     position: relative;
     border: 1px solid black;
+
 }
 .main-page__contact-title{
     font-size: 30px;
@@ -25,7 +26,6 @@
     margin: 20px 0 0 20px;
 }
 .contact__buttons-container{
-    margin: auto 0;
     width: 100%;
     text-align: end;
 }

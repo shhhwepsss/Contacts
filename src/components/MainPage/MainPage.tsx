@@ -28,7 +28,7 @@ const MainPage = () => {
   const contacts = user.contacts.map( ( contact ) => {
     return <Contact key={contact.id} name={contact.name} phoneNumber={contact.phoneNumber} />
   })
-  function addContactWindow(window:React.RefObject<HTMLDivElement>){
+  function openWindow(window:React.RefObject<HTMLDivElement>){
     window.current?.classList.remove("main-page__modal-window-static")
     window.current?.classList.add("active")
   }
@@ -77,14 +77,14 @@ const MainPage = () => {
     <div className='main-page'>
       <h2 className="main-page__contact-title">Мои контакты</h2>
       <div className="main-page__contacts"> 
-      <select onChange={(e)=> sortContacts(e)} name="" id="">
+      <select className="main-page__select" onChange={(e)=> sortContacts(e)} name="" id="">
         <option value="dontSort" selected > Не сортировать</option>
         <option value="name">Сортировать по имени</option>
         <option value="phoneNumber"> сортировать по телефону</option>
       </select>
         {isContactSorted ? sortedContacts?.map(item => item) : contacts}
       </div>
-      <button onClick={() => addContactWindow(modalWindow)}> <img src={plus} className='mainPage__add-contact-button' alt="" /></button>
+      <button onClick={() => openWindow(modalWindow)}> <img src={plus} className='mainPage__add-contact-button' alt="" /></button>
       <div ref={modalWindow} className="main-page__modal-window-static">
 
         <div className="main-page__writeContact-block">
