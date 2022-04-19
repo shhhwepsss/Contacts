@@ -14,12 +14,16 @@ const reducer = (state = initialState, action: UserAction) => {
             const {name, password, contacts,id} = action
             return state = {...state, name, password, contacts, id}
         case "DELETE_USER_CONTACT":
-            state.contacts.map( (item, index) => {
-                if(action.deleteElement === item.phoneNumber){    
-                    return state.contacts.splice(index,1)
-                }
-            })
-            return state = {...state}
+            const idx = state.contacts.findIndex( item => {
+                if(action.deleteElement === item.phoneNumber){ 
+                    return item
+                }})
+            
+            const newArray = [
+                ...state.contacts.slice(0, idx),
+                ...state.contacts.slice(idx+1)
+            ]
+            return {...state, contacts: newArray}  
         case "ADD_USER_CONTACT":
                 state.contacts.push(action.newContact)
                 return state = {...state}

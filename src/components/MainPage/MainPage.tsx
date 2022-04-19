@@ -29,6 +29,7 @@ const MainPage = () => {
   const contacts = user.contacts.map( ( contact ) => {
     return <Contact key={contact.id} name={contact.name} phoneNumber={contact.phoneNumber} />
   })
+  
   function openWindow(window:React.RefObject<HTMLDivElement>){
     window.current?.classList.remove("main-page__modal-window-static")
     window.current?.classList.add("active")
