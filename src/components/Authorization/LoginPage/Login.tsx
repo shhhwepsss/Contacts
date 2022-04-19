@@ -3,8 +3,8 @@ import "./Login.css"
 import circle from "../../../images/circle.png"
 import { useNavigate } from 'react-router-dom';
 import { focusEnd } from '../../Helpers/FocusEnd';
-import { getCurrentUserDataPromise } from '../../Helpers/getCurrentUserData';
 import { useDispatch } from 'react-redux';
+import { Api } from '../../Helpers/Api';
 
 type user = [{
   name: string,
@@ -19,7 +19,7 @@ const Login: React.FC = () => {
   const loadCircle = useRef<HTMLImageElement>(null)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+  const api = new Api()
   
 
   async function chekUser(userName: string, loadCircle: React.RefObject<HTMLImageElement>, passwordInputValue: string,) {
@@ -34,7 +34,7 @@ const Login: React.FC = () => {
 
     loadCircle.current!.classList.remove("loading-circle-static")
     loadCircle.current!.classList.add("loading-circle-active")
-    const user = getCurrentUserDataPromise(userName)
+    const user = api.getCurrentUserDataPromise(userName)
     user.then(userArrayData => {
       if (!userArrayData.length) {
         alert("Пользователь не зарегистрирован");

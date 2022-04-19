@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Registration.css"
-import { sendRegistrationData } from '../../Helpers/sendRegistrationData'
-import { getCurrentUserDataPromise } from '../../Helpers/getCurrentUserData'
 import { focusEnd } from '../../Helpers/FocusEnd'
+import { Api } from '../../Helpers/Api'
 
 const Registration = () => {
   const [loginErrorMessage, setLoginErrorMessage] = useState<string>("")
@@ -13,6 +12,7 @@ const Registration = () => {
   const [secondPasswordValue, setSecondPasswordValue] = useState<string>('')
   const [userRegistredMessage, setUserRegistredMessage] = useState<string>('')
   const navigate = useNavigate()
+  const api = new Api()
 
 
   function chekUser(userName: string, passwordInputValue: string, secondPasswordValue: string) {
@@ -29,7 +29,7 @@ const Registration = () => {
     }
     let userRegistred: boolean = false;
 
-    const user = getCurrentUserDataPromise(userName)
+    const user = api.getCurrentUserDataPromise(userName)
     user.then(userArray => {
       console.log(userArray);
       if (userArray.length) {
@@ -38,7 +38,7 @@ const Registration = () => {
         return
       } else {
         userRegistred = true
-        sendRegistrationData(loginInputValue, passwordInputValue)
+        api.sendRegistrationData(loginInputValue, passwordInputValue)
         navigate("/login")
         return
       }

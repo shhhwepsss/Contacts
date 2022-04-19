@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import "./Contact.css"
 import closeButton from "./../../../images/closeButton.jpg"
 import { IState, IContacts } from '../../../Interfaces/Interfaces'; 
-import { updateUserBox } from '../../Helpers/updateUserBox';
+import { Api } from '../../Helpers/Api';
 
 type ContactProps = {
   name: string,
@@ -16,6 +16,7 @@ function Contacts({ name, phoneNumber }: ContactProps) {
   const [newContactName, setNewContactName] = useState<string>('')
   const [newPhoneNumber, setNewPhoneNumber] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const api = new Api()
 
   const modaleWindow = useRef<HTMLDivElement>(null)
   const userStore = useSelector<IState, IState>( store => store )
@@ -29,7 +30,7 @@ function Contacts({ name, phoneNumber }: ContactProps) {
       id:user.id
     }
     
-    updateUserBox(userBox)
+    api.updateUserBox(userBox)
   }
 
   function closeWindow(window: React.RefObject<HTMLDivElement>) {
@@ -58,7 +59,7 @@ function Contacts({ name, phoneNumber }: ContactProps) {
       contacts: user.contacts,
       id:user.id
     }
-    updateUserBox(userBox)
+    api.updateUserBox(userBox)
   }
   
   return (

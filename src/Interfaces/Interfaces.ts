@@ -23,3 +23,10 @@ export interface IContacts {
     phoneNumber?: string 
     oldPhoneNumber?: string | undefined
 }
+
+export interface UserBox {
+    name:string,
+    password:string,
+    contacts: Array<IContacts>,
+    id:number
+}

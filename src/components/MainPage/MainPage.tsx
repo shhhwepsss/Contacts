@@ -5,8 +5,8 @@ import Contact from './Contact/Contacts';
 import plus from "./../../images/plus-icon.jpg"
 import React, { useRef, useState, useEffect, MutableRefObject, LegacyRef } from 'react';
 import closeButton from "./../../images/closeButton.jpg"
-import { updateUserBox } from '../Helpers/updateUserBox';
 import { useNavigate } from 'react-router-dom';
+import { Api } from '../Helpers/Api';
 
 
 const MainPage = () => {
@@ -24,6 +24,7 @@ const MainPage = () => {
   const [contactPhoneNumber, setcontactPhoneNumber] = useState<string>('')
   const [sortedContacts, setSortedContact] = useState<JSX.Element[]>()
   const [isContactSorted, setIsContactSorted] = useState<boolean>(false)
+  const api = new Api()
 
   const contacts = user.contacts.map( ( contact ) => {
     return <Contact key={contact.id} name={contact.name} phoneNumber={contact.phoneNumber} />
@@ -58,7 +59,7 @@ const MainPage = () => {
       contacts: user.contacts,
       id:user.id
     }
-    updateUserBox(userBox)
+    api.updateUserBox(userBox)
   }
 
   function sortContacts(e:React.ChangeEvent<HTMLSelectElement>){

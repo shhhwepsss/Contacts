@@ -1,7 +1,5 @@
-import { type } from "os";
 import { combineReducers, createStore } from "redux";
-import { updateUserBox } from "../components/Helpers/updateUserBox";
-import { IState, IContacts, UserAction } from "../Interfaces/Interfaces"; 
+import { IState, UserAction } from "../Interfaces/Interfaces"; 
 
 const initialState: IState  = {
     name: "",
