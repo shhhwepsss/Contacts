@@ -4,7 +4,7 @@ import circle from "../../../images/circle.png"
 import { useNavigate } from 'react-router-dom';
 import { focusEnd } from '../../Helpers/FocusEnd';
 import { useDispatch } from 'react-redux';
-import { Api } from '../../Helpers/Api';
+import { Api } from '../../../services/Api';
 
 type user = [{
   name: string,

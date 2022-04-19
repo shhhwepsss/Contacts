@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Registration.css"
 import { focusEnd } from '../../Helpers/FocusEnd'
-import { Api } from '../../Helpers/Api'
+import { Api } from '../../../services/Api'
 
 const Registration = () => {
   const [loginErrorMessage, setLoginErrorMessage] = useState<string>("")

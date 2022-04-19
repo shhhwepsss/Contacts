@@ -1,5 +1,5 @@
 
-import { UserBox } from '../../Interfaces/Interfaces'
+import { UserBox } from '../Interfaces/Interfaces'
 
 
 export class Api {

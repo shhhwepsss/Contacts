@@ -6,7 +6,7 @@ import plus from "./../../images/plus-icon.jpg"
 import React, { useRef, useState, useEffect, MutableRefObject, LegacyRef } from 'react';
 import closeButton from "./../../images/closeButton.jpg"
 import { useNavigate } from 'react-router-dom';
-import { Api } from '../Helpers/Api';
+import { Api } from '../../services/Api';
 
 
 const MainPage = () => {

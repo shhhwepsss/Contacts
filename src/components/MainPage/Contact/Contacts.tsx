@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import "./Contact.css"
 import closeButton from "./../../../images/closeButton.jpg"
 import { IState, IContacts } from '../../../Interfaces/Interfaces'; 
-import { Api } from '../../Helpers/Api';
+import { Api } from '../../../services/Api';
 
 type ContactProps = {
   name: string,
