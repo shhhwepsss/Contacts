@@ -44,13 +44,14 @@ function Contacts({ name, phoneNumber }: ContactProps) {
 
   function saveContactData(newContactName:string,newContactPhoneNumber:string, oldPhoneNumber:React.RefObject<HTMLParagraphElement>,user:IState){
     if(!newContactName || !newContactPhoneNumber) return setErrorMessage("Заполните поля!")
+    debugger
     const changedContact: IContacts = {
       name: newContactName,
       id: Date.now(),
       phoneNumber: newContactPhoneNumber,
       oldPhoneNumber: oldPhoneNumber.current?.innerHTML,
     }
-    dispatch({type:"CHANGE_USER_CONTACT", changedContact})
+    dispatch({type:"CHANGE_USER_CONTACT", changedContact: changedContact})
     
     closeWindow(modaleWindow);
     const userBox = {

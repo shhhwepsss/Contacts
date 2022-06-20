@@ -1,4 +1,3 @@
-
 export interface IState {
     name: string,
     password: string,
@@ -8,15 +7,15 @@ export interface IState {
 
 export interface UserAction  {
     type: string,
-    userData: {
+    newUserData: {
         name: string ,
         id: number,
         password: string,
         contacts: Array<IContacts>,
-        deleteElement: string,
-        newContact: IContacts,
-        changedContact: IContacts,
     }
+    changedContact: IContacts,
+    newContactData: IContacts
+    deleteElement: string,
 }
 
 export interface IContacts {

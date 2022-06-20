@@ -27,7 +27,11 @@ const MainPage = () => {
   const api = new Api()
 
   const contacts = user.contacts.map( ( contact ) => {
-    return <Contact key={contact.id} name={contact.name} phoneNumber={contact.phoneNumber} />
+    if(contact){
+      return <Contact key={contact.id} name={contact.name} phoneNumber={contact.phoneNumber} /> 
+    }else{
+      return <></>
+    }
   })
   
   function openWindow(window:React.RefObject<HTMLDivElement>){
@@ -53,7 +57,7 @@ const MainPage = () => {
       phoneNumber: contactPhoneNumber
     }
     setIsContactSorted(false)
-    dispatch({type: "ADD_USER_CONTACT", newContact: newContactData})
+    dispatch({type: "ADD_USER_CONTACT", newContactData: newContactData})
     const userBox = {
       name:user.name,
       password: user.password ,
@@ -64,15 +68,18 @@ const MainPage = () => {
   }
 
   function sortContacts(e:React.ChangeEvent<HTMLSelectElement>){
-    
     if(e.target.value === "dontSort") return setIsContactSorted(false)
+
+    if(contacts === null){
+      return 
+    }
     const sortedContacts = contacts.sort(function (a:JSX.Element , b:JSX.Element):number {
       if (a.props[e.target.value] < b.props[e.target.value]) {return -1}; 
       if (a.props[e.target.value] > b.props[e.target.value]){ return 1}; 
       return 0
     })
-    setIsContactSorted(true)
     setSortedContact(sortedContacts)
+    setIsContactSorted(true)
   }
 
   return (
