@@ -13,7 +13,7 @@ const Registration = () => {
   const [userRegistredMessage, setUserRegistredMessage] = useState<string>('')
   const navigate = useNavigate()
   const api = new Api()
- 
+
 
   function chekUser(userName: string, passwordInputValue: string, secondPasswordValue: string) {
 
@@ -27,17 +27,12 @@ const Registration = () => {
       setPasswordErrorMessage("Поле пароль не должно быть пустым и меньше 8 символов")
       return
     }
-    let isUserRegistred: boolean = false;
 
     const user = api.getCurrentUserDataPromise(userName).then(userArray => {
-      console.log(userArray);
-      
       if (userArray.length) {
-        isUserRegistred = false
         setUserRegistredMessage("Такой пользователь зарегистрирован")
         return
       } else {
-        isUserRegistred = true
         api.sendRegistrationData(loginInputValue, passwordInputValue)
         navigate("/login")
         return
