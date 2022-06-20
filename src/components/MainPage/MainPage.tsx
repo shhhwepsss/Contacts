@@ -8,7 +8,7 @@ import closeButton from "./../../images/closeButton.jpg"
 import { useNavigate } from 'react-router-dom';
 import { Api } from '../../services/Api';
 
-
+const ADD_USER_CONTACT: string = "ADD_USER_CONTACT"
 const MainPage = () => {
   const user = useSelector<IState, IState>( store => store )
   const navigate = useNavigate()
@@ -57,7 +57,7 @@ const MainPage = () => {
       phoneNumber: contactPhoneNumber
     }
     setIsContactSorted(false)
-    dispatch({type: "ADD_USER_CONTACT", newContactData: newContactData})
+    dispatch({type: ADD_USER_CONTACT, newContactData: newContactData})
     const userBox = {
       name:user.name,
       password: user.password ,
