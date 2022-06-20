@@ -11,11 +11,11 @@ const initialState: IState  = {
 const reducer = (state = initialState, action: UserAction) => {
     switch (action.type ) {
         case "SET_USER_DATA":
-            const {name, password, contacts,id} = action
+            const {name, password, contacts, id} = action.userData
             return state = {...state, name, password, contacts, id}
         case "DELETE_USER_CONTACT":
             const idx = state.contacts.findIndex( item => {
-                if(action.deleteElement === item.phoneNumber){ 
+                if(action.userData.deleteElement === item.phoneNumber){ 
                     return item
                 }})
             
@@ -25,13 +25,13 @@ const reducer = (state = initialState, action: UserAction) => {
             ]
             return {...state, contacts: newArray}  
         case "ADD_USER_CONTACT":
-                state.contacts.push(action.newContact)
+                state.contacts.push(action.userData.newContact)
                 return state = {...state}
         case "CHANGE_USER_CONTACT":
                 state.contacts.map((item)=> {
-                    if(item.phoneNumber === action.changedContact.oldPhoneNumber){
-                        item.phoneNumber= action.changedContact.phoneNumber;
-                        item.name = action.changedContact.name
+                    if(item.phoneNumber === action.userData.changedContact.oldPhoneNumber){
+                        item.phoneNumber= action.userData.changedContact.phoneNumber;
+                        item.name = action.userData.changedContact.name
                     }
                     return item
             })

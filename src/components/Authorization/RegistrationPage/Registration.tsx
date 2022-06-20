@@ -28,7 +28,7 @@ const Registration = () => {
       return
     }
 
-    const user = api.getCurrentUserDataPromise(userName).then(userArray => {
+    api.getCurrentUserDataPromise(userName).then(userArray => {
       if (userArray.length) {
         setUserRegistredMessage("Такой пользователь зарегистрирован")
         return

@@ -6,16 +6,14 @@ import { focusEnd } from '../../Helpers/FocusEnd';
 import { useDispatch } from 'react-redux';
 import { Api } from '../../../services/Api';
 
-type user = [{
-  name: string,
-  password: string
-}]
-
+const SET_USER_DATA: string = "SET_USER_DATA";
+ 
 const Login: React.FC = () => {
   const [loginErrorMessage, setLoginErrorMessage] = useState<string>("")
   const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>("")
   const [loginInputValue, setloginInputValue] = useState<string>('')
   const [passwordInputValue, setPasswordInputValue] = useState<string>('')
+
   const loadCircle = useRef<HTMLImageElement>(null)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -34,16 +32,20 @@ const Login: React.FC = () => {
 
     loadCircle.current!.classList.remove("loading-circle-static")
     loadCircle.current!.classList.add("loading-circle-active")
-    const user = api.getCurrentUserDataPromise(userName)
-    user.then(userArrayData => {
+    
+    api.getCurrentUserDataPromise(userName).then(userArrayData => {
       if (!userArrayData.length) {
         alert("Пользователь не зарегистрирован");
         navigate("/registration")
         return
       } else if (passwordInputValue === userArrayData[0].password) {
-        console.log(userArrayData);
-        
-        dispatch({type: "SET_USER_DATA", name: userArrayData[0].name, password:userArrayData[0].password, contacts: userArrayData[0].contacts, id: userArrayData[0].id})
+        const newUserData = {
+          name: userArrayData[0].name, 
+          password:userArrayData[0].password, 
+          contacts: userArrayData[0].contacts, 
+          id: userArrayData[0].id
+        }
+        dispatch({type: SET_USER_DATA, newUserData})
         navigate("/mainPage")
         return
       }if (passwordInputValue !== userArrayData[0].password) {
@@ -52,8 +54,6 @@ const Login: React.FC = () => {
     });
     loadCircle.current!.classList.remove("loading-circle-active")
     loadCircle.current!.classList.add("loading-circle-static")
-    
-
   }
 
   return (
