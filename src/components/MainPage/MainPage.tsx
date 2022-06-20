@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import "./MainPage.css"
-import { IState } from '../../Interfaces/Interfaces'; 
+import { IContacts, IState } from '../../Interfaces/Interfaces'; 
 import Contact from './Contact/Contacts';
 import plus from "./../../images/plus-icon.jpg"
 import React, { useRef, useState, useEffect, MutableRefObject, LegacyRef } from 'react';
@@ -51,7 +51,7 @@ const MainPage = () => {
     }
     window.current?.classList.add("main-page__modal-window-static")
     window.current?.classList.remove("active")
-    const newContactData = {
+    const newContactData: IContacts = {
       id: Date.now(),
       name: contactName,
       phoneNumber: contactPhoneNumber
@@ -70,9 +70,6 @@ const MainPage = () => {
   function sortContacts(e:React.ChangeEvent<HTMLSelectElement>){
     if(e.target.value === "dontSort") return setIsContactSorted(false)
 
-    if(contacts === null){
-      return 
-    }
     const sortedContacts = contacts.sort(function (a:JSX.Element , b:JSX.Element):number {
       if (a.props[e.target.value] < b.props[e.target.value]) {return -1}; 
       if (a.props[e.target.value] > b.props[e.target.value]){ return 1}; 
