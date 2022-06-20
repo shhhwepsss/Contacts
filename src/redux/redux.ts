@@ -42,3 +42,10 @@ const reducer = (state = initialState, action: UserAction) => {
 }
 
 export const store = createStore(reducer);
+
+function addUserActionCreator(value: any){
+    return {
+        type: "ADD_USER",
+        value: value
+    }
+}

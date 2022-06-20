@@ -13,7 +13,7 @@ const Registration = () => {
   const [userRegistredMessage, setUserRegistredMessage] = useState<string>('')
   const navigate = useNavigate()
   const api = new Api()
-
+ 
 
   function chekUser(userName: string, passwordInputValue: string, secondPasswordValue: string) {
 
@@ -31,7 +31,6 @@ const Registration = () => {
 
     const user = api.getCurrentUserDataPromise(userName)
     user.then(userArray => {
-      console.log(userArray);
       if (userArray.length) {
         userRegistred = false
         setUserRegistredMessage("Такой пользователь зарегистрирован")
