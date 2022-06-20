@@ -3,28 +3,40 @@ import { UserBox } from '../Interfaces/Interfaces'
 
 
 export class Api {
-
+    private _usersUrl: string = `http://localhost:3001/users` 
     getCurrentUserDataPromise = async (userName: string) => {
-        const userPromise = await fetch(`http://localhost:3001/users?q=${userName}`);
-        return await userPromise.json()
+        try {
+            const userPromise = await fetch(this._usersUrl + `?q=${userName}`);
+            return await userPromise.json()
+        } catch (error) {
+            alert(error)
+        }
     }
 
     sendRegistrationData(name:string, password:string) {
-        const readyObject = {
-            name,
-            password,
-            contacts: []
+        try {
+            const readyObject = {
+                name,
+                password,
+                contacts: []
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", this._usersUrl, true)
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(readyObject));
+        } catch (error) {
+            alert(error)
         }
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:3001/users", true)
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(readyObject));
     }
 
     updateUserBox = async (userBox:UserBox) => {
-        const xhr = new XMLHttpRequest()
-        xhr.open("PATCH", `http://localhost:3001/users/${userBox.id}`)
-        xhr.setRequestHeader("Content-Type", "application/json")
-        xhr.send(JSON.stringify(userBox))
+        try {
+            const xhr = new XMLHttpRequest()
+            xhr.open("PATCH", this._usersUrl + `/${userBox.id}`)
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(JSON.stringify(userBox))
+        } catch (error) {
+            alert(error)
+        }
     }
 }
