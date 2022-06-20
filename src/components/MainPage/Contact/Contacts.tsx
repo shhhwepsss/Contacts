@@ -9,6 +9,8 @@ type ContactProps = {
   name: string,
   phoneNumber?: string
 }
+const CHANGE_USER_CONTACT: string = "CHANGE_USER_CONTACT"
+const DELETE_USER_CONTACT: string = "DELETE_USER_CONTACT"
 
 function Contacts({ name, phoneNumber }: ContactProps) {
   const oldPhoneNumber = useRef<HTMLParagraphElement>(null)
@@ -22,7 +24,7 @@ function Contacts({ name, phoneNumber }: ContactProps) {
   const userStore = useSelector<IState, IState>( store => store )
   
   function deleteContact(phoneNumber:string | undefined, user:IState) {
-    dispatch({ type: "DELETE_USER_CONTACT", deleteElement: phoneNumber })
+    dispatch({ type: DELETE_USER_CONTACT, deleteElement: phoneNumber })
     const userBox = {
       name:user.name,
       password: user.password ,
@@ -44,13 +46,14 @@ function Contacts({ name, phoneNumber }: ContactProps) {
 
   function saveContactData(newContactName:string,newContactPhoneNumber:string, oldPhoneNumber:React.RefObject<HTMLParagraphElement>,user:IState){
     if(!newContactName || !newContactPhoneNumber) return setErrorMessage("Заполните поля!")
+    debugger
     const changedContact: IContacts = {
       name: newContactName,
       id: Date.now(),
       phoneNumber: newContactPhoneNumber,
       oldPhoneNumber: oldPhoneNumber.current?.innerHTML,
     }
-    dispatch({type:"CHANGE_USER_CONTACT", changedContact})
+    dispatch({type:CHANGE_USER_CONTACT, changedContact: changedContact})
     
     closeWindow(modaleWindow);
     const userBox = {

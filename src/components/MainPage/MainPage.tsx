@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import "./MainPage.css"
-import { IState } from '../../Interfaces/Interfaces'; 
+import { IContacts, IState } from '../../Interfaces/Interfaces'; 
 import Contact from './Contact/Contacts';
 import plus from "./../../images/plus-icon.jpg"
 import React, { useRef, useState, useEffect, MutableRefObject, LegacyRef } from 'react';
@@ -8,7 +8,7 @@ import closeButton from "./../../images/closeButton.jpg"
 import { useNavigate } from 'react-router-dom';
 import { Api } from '../../services/Api';
 
-
+const ADD_USER_CONTACT: string = "ADD_USER_CONTACT"
 const MainPage = () => {
   const user = useSelector<IState, IState>( store => store )
   const navigate = useNavigate()
@@ -27,7 +27,11 @@ const MainPage = () => {
   const api = new Api()
 
   const contacts = user.contacts.map( ( contact ) => {
-    return <Contact key={contact.id} name={contact.name} phoneNumber={contact.phoneNumber} />
+    if(contact){
+      return <Contact key={contact.id} name={contact.name} phoneNumber={contact.phoneNumber} /> 
+    }else{
+      return <></>
+    }
   })
   
   function openWindow(window:React.RefObject<HTMLDivElement>){
@@ -47,13 +51,13 @@ const MainPage = () => {
     }
     window.current?.classList.add("main-page__modal-window-static")
     window.current?.classList.remove("active")
-    const newContactData = {
+    const newContactData: IContacts = {
       id: Date.now(),
       name: contactName,
       phoneNumber: contactPhoneNumber
     }
     setIsContactSorted(false)
-    dispatch({type: "ADD_USER_CONTACT", newContact: newContactData})
+    dispatch({type: ADD_USER_CONTACT, newContactData: newContactData})
     const userBox = {
       name:user.name,
       password: user.password ,
@@ -64,15 +68,15 @@ const MainPage = () => {
   }
 
   function sortContacts(e:React.ChangeEvent<HTMLSelectElement>){
-    
     if(e.target.value === "dontSort") return setIsContactSorted(false)
+
     const sortedContacts = contacts.sort(function (a:JSX.Element , b:JSX.Element):number {
       if (a.props[e.target.value] < b.props[e.target.value]) {return -1}; 
       if (a.props[e.target.value] > b.props[e.target.value]){ return 1}; 
       return 0
     })
-    setIsContactSorted(true)
     setSortedContact(sortedContacts)
+    setIsContactSorted(true)
   }
 
   return (
