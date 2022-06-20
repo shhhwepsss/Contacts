@@ -25,10 +25,10 @@ const Login: React.FC = () => {
   async function chekUser(userName: string, loadCircle: React.RefObject<HTMLImageElement>, passwordInputValue: string,) {
     
     if (userName === "") {
-      setLoginErrorMessage("Поле имя пользователя должно быть заполнено")
+      setLoginErrorMessage("Поле имя пользователя не должно быть пустым")
       return
     } else if (passwordInputValue === "") {
-      setPasswordErrorMessage("Поле пароль должно быть заполнено")
+      setPasswordErrorMessage("Поле пароль должно не должно быть пустым")
       return
     }
 

@@ -24,7 +24,7 @@ const Registration = () => {
       setPasswordErrorMessage("Неправильно набран второй пароль")
       return
     } else if (passwordInputValue === "" || passwordInputValue.length < 8) {
-      setPasswordErrorMessage("Пароль не должен быть пустым и меньше 8 символов")
+      setPasswordErrorMessage("Поле пароль не должно быть пустым и меньше 8 символов")
       return
     }
     let userRegistred: boolean = false;
